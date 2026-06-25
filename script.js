@@ -9,22 +9,37 @@
   ];
   window.__CQ_PARTS = [];
 
-  function fail(){
+  function fail(message){
     const feedback = document.querySelector('#feedback');
     if (feedback) {
-      feedback.textContent = 'Le jeu n\'a pas pu charger toutes ses donnees.';
+      feedback.textContent = message || 'Le jeu n\'a pas pu charger toutes ses donnees.';
       feedback.className = 'feedback error';
     }
   }
 
+  function decodePart(part){
+    const binary = atob(part);
+    const bytes = new Uint8Array(binary.length);
+    for (let index = 0; index < binary.length; index += 1) {
+      bytes[index] = binary.charCodeAt(index);
+    }
+    return bytes;
+  }
+
   function runGame(){
     try {
-      const binary = atob(window.__CQ_PARTS.join(''));
-      const bytes = Uint8Array.from(binary, function(char){ return char.charCodeAt(0); });
+      const chunks = window.__CQ_PARTS.map(decodePart);
+      const totalLength = chunks.reduce(function(total, chunk){ return total + chunk.length; }, 0);
+      const bytes = new Uint8Array(totalLength);
+      let offset = 0;
+      chunks.forEach(function(chunk){
+        bytes.set(chunk, offset);
+        offset += chunk.length;
+      });
       const code = new TextDecoder('utf-8').decode(bytes);
       (0, eval)(code);
     } catch (error) {
-      fail();
+      fail('Le jeu n\'a pas pu charger toutes ses donnees.');
     }
   }
 
@@ -36,7 +51,7 @@
     const script = document.createElement('script');
     script.src = parts[index];
     script.onload = function(){ loadPart(index + 1); };
-    script.onerror = fail;
+    script.onerror = function(){ fail('Un fichier du jeu est introuvable.'); };
     document.head.appendChild(script);
   }
 

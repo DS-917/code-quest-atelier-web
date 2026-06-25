@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Quest - Atelier Web</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="cover-screen" class="cover-screen" aria-labelledby="cover-title">
+    <div class="cover-card">
+      <div class="cover-copy">
+        <p class="eyebrow">Code Quest</p>
+        <h1 id="cover-title">Atelier Web</h1>
+        <p class="cover-lead">Enfile ton casque d’ingénieur web et répare le mini-site du Club Astro Pixel, question après question.</p>
+        <button id="discover-button" class="start-button" type="button">Découvrir la mission</button>
+      </div>
+
+      <div class="cover-illustration" aria-hidden="true">
+        <svg viewBox="0 0 360 360" class="engineer-svg">
+          <circle class="svg-sun" cx="286" cy="70" r="38"></circle>
+          <rect class="svg-window" x="38" y="34" width="198" height="132" rx="18"></rect>
+          <path class="svg-code" d="M82 78l-28 22 28 22M192 78l28 22-28 22M142 68l-24 66"></path>
+          <circle class="svg-head" cx="177" cy="168" r="48"></circle>
+          <path class="svg-hair" d="M128 160c12-44 52-58 90-30 4 15 2 28-4 38-18-26-55-34-86-8z"></path>
+          <path class="svg-body" d="M94 312c10-72 52-104 83-104s73 32 83 104H94z"></path>
+          <path class="svg-shirt" d="M139 312l22-84h32l22 84"></path>
+          <rect class="svg-laptop" x="82" y="244" width="190" height="80" rx="10"></rect>
+          <path class="svg-laptop-line" d="M62 324h230"></path>
+          <path class="svg-arm-left" d="M126 248c-22 6-39 18-51 38"></path>
+          <path class="svg-arm-right" d="M228 248c22 6 39 18 51 38"></path>
+          <circle class="svg-gear" cx="282" cy="184" r="24"></circle>
+          <path class="svg-gear-line" d="M282 150v18M282 200v18M248 184h18M298 184h18M258 160l13 13M293 195l13 13M306 160l-13 13M271 195l-13 13"></path>
+          <rect class="svg-tag" x="48" y="184" width="74" height="38" rx="10"></rect>
+          <text x="85" y="209" text-anchor="middle" class="svg-tag-text">HTML</text>
+          <rect class="svg-tag svg-tag-two" x="238" y="244" width="74" height="38" rx="10"></rect>
+          <text x="275" y="269" text-anchor="middle" class="svg-tag-text">CSS</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="start-screen" class="start-screen hidden" aria-labelledby="start-title">
+    <div class="start-card">
+      <p class="eyebrow">Brief de mission</p>
+      <h1 id="start-title">Bienvenue à l’Atelier Astro Pixel</h1>
+      <p class="start-lead">Le Club Astro Pixel prépare sa première soirée d’observation. Problème: son mini-site est incomplet, mal rangé et pas encore prêt à être publié.</p>
+
+      <div class="story-box">
+        <h2>Ton mandat</h2>
+        <p>Tu deviens l’apprenti développeur du club. À chaque chapitre, tu répares une partie du site: structure HTML, textes, listes, médias, formulaires, CSS, validation et respect des sources.</p>
+        <p>Quand un chapitre est terminé, tu gagnes un badge. À la fin du parcours, le club possède les bases d’un site clair, propre et prêt à inspirer ses visiteurs.</p>
+      </div>
+
+      <div class="start-goals" aria-label="Objectifs du jeu">
+        <span>50 questions</span>
+        <span>11 badges</span>
+        <span>HTML + CSS</span>
+        <span>Feedback immédiat</span>
+      </div>
+
+      <button id="start-button" class="start-button" type="button">Commencer la mission</button>
+    </div>
+  </section>
+
+  <main class="game-shell game-locked">
+    <section class="lesson-panel" aria-labelledby="game-title">
+      <header class="game-header">
+        <div>
+          <p class="eyebrow">HTML & CSS pour débutants</p>
+          <h1 id="game-title">Code Quest</h1>
+        </div>
+        <button id="reset-button" class="small-button" type="button">Reset</button>
+      </header>
+
+      <nav id="level-map" class="level-map" aria-label="Choix du niveau"></nav>
+
+      <div class="score-row" aria-label="Progression">
+        <span>Score <strong id="score">0</strong></span>
+        <span>Badges <strong id="badge-count">0</strong>/<strong id="total-badges">11</strong></span>
+        <span>Question <strong><span id="current-level">1</span>/<span id="total-levels">50</span></strong></span>
+      </div>
+
+      <div class="progress-track" aria-label="Barre de progression">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <article class="mission-card">
+        <div class="level-meta">
+          <span id="level-pill" class="level-pill">Niveau 1</span>
+          <span id="level-type" class="level-type">Choisir</span>
+        </div>
+        <h2 id="challenge-title">Chargement...</h2>
+        <p id="challenge-story" class="story"></p>
+      </article>
+
+      <section class="editor-card" aria-label="Zone de réponse">
+        <div class="editor-title">
+          <span id="editor-label">Code</span>
+          <span class="file-chip">index.html</span>
+        </div>
+        <div class="code-window">
+          <div class="line-numbers" aria-hidden="true">1<br>2<br>3<br>4<br>5</div>
+          <pre><code id="code-sample"></code></pre>
+        </div>
+        <div id="answer-zone" class="answer-zone"></div>
+      </section>
+
+      <div class="actions">
+        <button id="hint-button" class="secondary-button" type="button">Indice</button>
+        <button id="check-button" class="primary-button" type="button">Valider</button>
+        <button id="next-button" class="primary-button hidden" type="button">Suivant</button>
+      </div>
+
+      <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="play-panel" aria-labelledby="preview-title">
+      <div class="play-topbar">
+        <h2 id="preview-title">Mini-site à réparer</h2>
+        <span id="site-health">En chantier</span>
+      </div>
+
+      <div class="play-field">
+        <div class="target-frame" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div id="site-preview" class="site-preview">
+          <div class="site-hero">
+            <p class="site-kicker">Club Astro Pixel</p>
+            <h3 id="preview-heading">Titre manquant</h3>
+            <p id="preview-text">Le site attend ses premiers éléments HTML.</p>
+          </div>
+          <nav id="preview-nav" class="preview-nav muted">
+            <a>Accueil</a>
+            <a>Activités</a>
+            <a>Contact</a>
+          </nav>
+          <ul id="preview-list" class="preview-list muted">
+            <li>Observation du ciel</li>
+            <li>Atelier photo</li>
+            <li>Soirée quiz</li>
+          </ul>
+          <div id="preview-card" class="preview-card muted">
+            <div class="fake-image" aria-hidden="true"></div>
+            <p>Image fictive avec texte alternatif.</p>
+          </div>
+          <form id="preview-form" class="preview-form muted">
+            <label>Nom <input type="text" placeholder="Ada"></label>
+            <label>Email <input type="email" placeholder="ada@example.test"></label>
+            <button type="button">Envoyer</button>
+          </form>
+        </div>
+      </div>
+
+      <aside class="badge-board" aria-label="Badges gagnés">
+        <h3>Badges de sous-chapitres</h3>
+        <div id="badges" class="badges"></div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="badge-popup" class="badge-popup hidden" aria-live="polite" aria-hidden="true">
+    <div class="badge-popup-card">
+      <p>Chapitre terminé</p>
+      <div id="badge-popup-title">Badge débloqué</div>
+    </div>
+  </div>
+
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -26,6 +26,24 @@
     return bytes;
   }
 
+  function cleanPreviewLinks(){
+    const previewNav = document.querySelector('#preview-nav');
+    if (!previewNav) {
+      return;
+    }
+    previewNav.querySelectorAll('a').forEach(function(link){
+      const label = document.createElement('span');
+      label.textContent = link.textContent;
+      link.replaceWith(label);
+    });
+    if (!document.querySelector('#preview-nav-style-fix')) {
+      const style = document.createElement('style');
+      style.id = 'preview-nav-style-fix';
+      style.textContent = '.preview-nav span{padding:8px 11px;border:2px solid #82d5cb;border-radius:999px;background:#effffd;font-weight:800;color:#29536f;}';
+      document.head.appendChild(style);
+    }
+  }
+
   function runGame(){
     try {
       const chunks = window.__CQ_PARTS.map(decodePart);
@@ -38,6 +56,7 @@
       });
       const code = new TextDecoder('utf-8').decode(bytes);
       (0, eval)(code);
+      cleanPreviewLinks();
     } catch (error) {
       fail('Le jeu n\'a pas pu charger toutes ses donnees.');
     }

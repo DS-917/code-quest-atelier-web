@@ -71,7 +71,10 @@
           <p class="eyebrow">HTML & CSS pour débutants</p>
           <h1 id="game-title">Code Quest</h1>
         </div>
-        <button id="reset-button" class="small-button" type="button">Reset</button>
+        <div class="header-actions">
+          <button id="theory-button" class="small-button theory-button" type="button">Livre de théorie</button>
+          <button id="reset-button" class="small-button" type="button">Reset</button>
+        </div>
       </header>
 
       <nav id="level-map" class="level-map" aria-label="Choix du niveau"></nav>
@@ -168,6 +171,22 @@
     <div class="badge-popup-card">
       <p>Chapitre terminé</p>
       <div id="badge-popup-title">Badge débloqué</div>
+    </div>
+  </div>
+
+  <div id="theory-modal" class="theory-modal hidden" aria-hidden="true">
+    <div class="theory-dialog" role="dialog" aria-modal="true" aria-labelledby="theory-title">
+      <header class="theory-header">
+        <div>
+          <p class="eyebrow">Révision</p>
+          <h2 id="theory-title">Livre de théorie</h2>
+        </div>
+        <button id="theory-close" class="small-button" type="button" aria-label="Fermer le livre de théorie">Fermer</button>
+      </header>
+      <div class="theory-layout">
+        <nav id="theory-tabs" class="theory-tabs" aria-label="Chapitres du livre de théorie"></nav>
+        <article id="theory-content" class="theory-content"></article>
+      </div>
     </div>
   </div>
 

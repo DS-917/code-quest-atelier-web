@@ -10,8 +10,9 @@ L'interface reprend le principe des jeux de code visuels: une consigne courte, u
 2. Cliquer sur `Decouvrir la mission`.
 3. Lire le brief de mission du Club Astro Pixel et cliquer sur `Commencer la mission`.
 4. L'apprenant avance dans les 50 questions.
-5. Les badges se debloquent quand un sous-chapitre est termine, avec une animation de recompense et une medaille visible dans la page.
-6. Le jeu fonctionne en local. Les ressources internet restent optionnelles et doivent etre documentees.
+5. Le bouton `Livre de theorie` ouvre un manuel integre avec les notions importantes, des exemples, ce que le code affiche et les points a retenir.
+6. Les badges se debloquent quand un sous-chapitre est termine, avec une animation de recompense et une medaille visible dans la page.
+7. Le jeu fonctionne en local. Les ressources internet restent optionnelles et doivent etre documentees.
 
 ## Objectifs pédagogiques
 

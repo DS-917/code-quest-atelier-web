@@ -289,6 +289,13 @@ input {
   gap: 12px;
 }
 
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .eyebrow {
   margin: 0 0 2px;
   color: #8f4d00;
@@ -329,6 +336,10 @@ h1 {
   min-height: 36px;
   padding: 6px 12px;
   background: #fff;
+}
+
+.theory-button {
+  background: #d8fbf5;
 }
 
 .primary-button,
@@ -690,7 +701,7 @@ pre {
   margin: 12px 0;
 }
 
-.preview-nav a {
+.preview-nav span {
   padding: 8px 11px;
   border: 2px solid #82d5cb;
   border-radius: 999px;
@@ -1008,6 +1019,153 @@ pre {
   margin: 0 auto;
 }
 
+.theory-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(31, 41, 55, 0.48);
+}
+
+.theory-modal.hidden {
+  display: none;
+}
+
+.theory-dialog {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: min(980px, 100%);
+  max-height: min(760px, calc(100vh - 40px));
+  overflow: hidden;
+  border: 3px solid var(--dark);
+  border-radius: 14px;
+  background: #fffdf7;
+  box-shadow: 0 12px 0 var(--dark);
+}
+
+.theory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border-bottom: 2px solid var(--line);
+  background: var(--panel);
+}
+
+.theory-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.theory-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  min-height: 0;
+}
+
+.theory-tabs {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-height: 0;
+  padding: 14px;
+  overflow: auto;
+  border-right: 2px solid var(--line);
+  background: #fff8e8;
+}
+
+.theory-tab {
+  width: 100%;
+  padding: 9px 10px;
+  border: 2px solid rgba(31, 41, 55, 0.28);
+  border-radius: 7px;
+  color: var(--dark);
+  text-align: left;
+  font-weight: 800;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.theory-tab.active {
+  border-color: var(--dark);
+  background: var(--accent);
+  box-shadow: 0 3px 0 var(--dark);
+}
+
+.theory-content {
+  min-height: 0;
+  padding: 22px;
+  overflow: auto;
+}
+
+.theory-content h3 {
+  margin-bottom: 10px;
+  font-size: 1.7rem;
+}
+
+.theory-content h4 {
+  margin: 22px 0 8px;
+  font-size: 1.05rem;
+}
+
+.theory-intro,
+.theory-content li,
+.theory-remember {
+  color: #4f5d6d;
+  line-height: 1.55;
+}
+
+.theory-content ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.theory-content li + li {
+  margin-top: 8px;
+}
+
+.theory-output {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 2px solid #82d5cb;
+  border-radius: 8px;
+  background: #d8fbf5;
+  list-style-position: inside;
+}
+
+.theory-output li {
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: #154f49;
+  font-weight: 700;
+  background: #ffffff;
+}
+
+.theory-output li + li {
+  margin-top: 0;
+}
+
+.theory-content pre {
+  margin: 0;
+  border: 2px solid var(--dark);
+  border-radius: 8px;
+  background: var(--code-bg);
+}
+
+.theory-remember {
+  margin: 22px 0 0;
+  padding: 12px;
+  border: 2px solid #f4b350;
+  border-radius: 8px;
+  color: #8a4b00;
+  font-weight: 800;
+  background: #fff2d6;
+}
+
 @keyframes medal-pop {
   50% {
     transform: scale(1.08) rotate(-2deg);
@@ -1094,11 +1252,38 @@ pre {
   .play-field {
     min-height: 620px;
   }
+
+  .theory-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .theory-tabs {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(160px, 1fr);
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 2px solid var(--line);
+  }
 }
 
 @media (max-width: 560px) {
   .lesson-panel {
     padding: 12px;
+  }
+
+  .game-header,
+  .theory-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .header-actions .small-button {
+    flex: 1;
   }
 
   .level-map {
@@ -1115,5 +1300,18 @@ pre {
 
   .target-frame {
     display: none;
+  }
+
+  .theory-modal {
+    padding: 10px;
+  }
+
+  .theory-dialog {
+    max-height: calc(100vh - 20px);
+  }
+
+  .theory-header,
+  .theory-content {
+    padding: 14px;
   }
 }
